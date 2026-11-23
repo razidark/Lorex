@@ -1,0 +1,77 @@
+{
+    "name": "rzl-lorex",
+    "version": "1.0.0",
+    "description": "Lorex AI Chat - Run LLMs locally and offline on your Windows PC",
+    "main": "electron/main.js",
+    "type": "commonjs",
+    "scripts": {
+        "start": "electron .",
+        "dev": "cross-env NODE_ENV=development electron .",
+        "build": "echo 'Lorex ready'",
+        "build:exe": "electron-builder --win portable",
+        "build:installer": "electron-builder --win",
+        "server": "node server.js"
+    },
+    "keywords": [
+        "ai",
+        "chatbot",
+        "llm",
+        "offline",
+        "local",
+        "webgpu",
+        "gguf",
+        "web-llm",
+        "lorex"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "readline": "^1.3.0"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.3",
+        "electron": "^42.2.0",
+        "electron-builder": "^26.15.3"
+    },
+    "build": {
+        "appId": "com.lorex.chat",
+        "productName": "Lorex",
+        "directories": {
+            "output": "dist"
+        },
+        "files": [
+            "electron/**/*",
+            "*.html",
+            "*.css",
+            "*.js"
+        ],
+        "win": {
+            "target": [
+                {
+                    "target": "portable",
+                    "arch": [
+                        "x64"
+                    ]
+                },
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64"
+                    ]
+                }
+            ],
+            "icon": "assets/icon.png",
+            "artifactName": "${productName}-${version}-${arch}.${ext}"
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true,
+            "createDesktopShortcut": true,
+            "shortcutName": "Lorex"
+        },
+        "portable": {
+            "artifactName": "${productName}-${version}-portable-${arch}.exe"
+        },
+        "extraResources": []
+    }
+}
